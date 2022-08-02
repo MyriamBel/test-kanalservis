@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      property="og:title"
+      content="Kanalservis"
+    />
+    <meta name="author" content="Myriam" />
+    <link rel="icon" href="{% static '/favicon.ico' %}" />
+    <title>Заказы</title>
+  </head>
+<body>
+<style>
+		.header {
+			width: 100%;
+			height: 180px;
+			background: #97F1A1;
+			margin-bottom: 20px;
+		}
+		.total {
+			width: 100%;
+			max-width: 340px;
+			height: 190px;
+			border: 1px solid rgba(0,0,0,.3);
+			margin-bottom: 50px;
+		}
+		.total__header {
+			background: #000;
+			color: #fff;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 30px;
+		}
+		.total__body {
+			font-size: 78px;
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.table-wrap {
+			width: 597px;
+		}
+		.th-col {
+			background: #07101D;
+			color: #fff;
+		}
+		.td-col {
+			background: #E9F2FF;
+			text-align: right;
+		}
+		.col-1 {
+			width: 40px;
+			padding: 5px;
+			border: 1px solid rgba(0,0,0,.3);
+		}
+		.col-2 {
+			width: 120px;
+			padding: 5px;
+			border: 1px solid rgba(0,0,0,.3);
+		}
+		.col-3 {
+			width: 160px;
+			padding: 5px;
+			border: 1px solid rgba(0,0,0,.3);
+		}
+		.col-4 {
+			width: 160px;
+			padding: 5px;
+			border: 1px solid rgba(0,0,0,.3);
+		}
+	</style>
+	<div class="main">
+		<div class="header"></div>
+		<div class="total">
+			<div class="total__header">Total</div>
+			<div class="total__body">
+				{{ total }}
+			</div>
+		</div>
+		<div class="table-wrap">
+			<table>
+				<tr class="th-row">
+					<th class="th-col col-1">№</th>
+					<th class="th-col col-2">Заказ №</th>
+					<th class="th-col col-3">Стоимость,$</th>
+					<th class="th-col col-4">Срок поставки</th>
+				</tr>
+				{% for supply in supplies %}
+				<tr>
+					<td class="td-col col-1">{{ supply.number_pos }}</td>
+					<td class="td-col col-2">{{ supply.order }}</td>
+					<td class="td-col col-3">{{ supply.price_usd }}</td>
+					<td class="td-col col-4">{{ supply.supply_date }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+<!--{% if supplies %}-->
+<!--    <ul>-->
+<!--    {% for supply in supplies %}-->
+<!--        <li>{{ supply. }}</li>-->
+<!--    {% endfor %}-->
+<!--    </ul>-->
+<!--{% else %}-->
+<!--    <p>Нет доступных заказов</p>-->
+<!--{% endif %}-->
+</body>
+</html>

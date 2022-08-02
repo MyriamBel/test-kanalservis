@@ -10,7 +10,11 @@ from kanalservis.settings import GOOGLE_DOC_NAME, GOOGLE_CELL_SUPPLY, GOOGLE_CEL
     GOOGLE_CELL_NUMBER
 from base.googlehelper import Gsheet
 
+from kanalservis.settings import BASE_DIR
+
 from django.http import HttpResponse
+
+from django.shortcuts import render
 
 
 def infotodb(request):
@@ -43,4 +47,8 @@ def infotodb(request):
 
 def index(request):
     supplies = Supply.objects.all()
-    return HttpResponse(supplies)
+    total = 0
+    for supply in supplies:
+        total += supply.price_usd
+    context = {'supplies': supplies, 'total': int(total)}
+    return render(request, 'kanalservisapp/index.html', context)
