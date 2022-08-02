@@ -46,7 +46,7 @@ def infotodb(request):
 
 
 def index(request):
-    supplies = Supply.objects.all().order_by("id")
+    supplies = Supply.objects.all().order_by("number_pos")
     total = 0
     for supply in supplies:
         total += supply.price_usd
